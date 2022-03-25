@@ -18,7 +18,7 @@ class utest {
     public void getAll(){
         System.out.println("MySQL용 테스트 케이스");
         List<jpatest> get = jpatestRepository.findAll();
-        System.out.println("받은 자료"+get.get(0));
+        System.out.println("받은 자료"+get.get(0).getNum());
 
     }
 
