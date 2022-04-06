@@ -24,7 +24,7 @@ public class SimpleReview {
     private int review_id; // Autoincrement, Primary Key
 
     @NotNull
-    private int place_id;
+    private Long place_id;
 
     @NotNull
     private String user_id;
@@ -39,4 +39,23 @@ public class SimpleReview {
     @Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private Timestamp review_date;
 
+
+    public String[] chkNull(){
+        String[] haveNull = new String[4];
+        int index = 0;
+        if(place_id==null){
+            haveNull[index] = "place_id";
+            index++;
+        }else if(user_id == "") {
+            haveNull[index] = "user_id";
+            index++;
+        }else if(recmnd == ""){
+            haveNull[index] = "recmnd";
+            index++;
+        }else if(content == ""){
+            haveNull[index] = "content";
+            index++;
+        }
+        return haveNull;
+    }
 }

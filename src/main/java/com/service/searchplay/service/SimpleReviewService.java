@@ -18,11 +18,10 @@ public class SimpleReviewService {
 
 
     public SimpleReview write(SimpleReview review){
-        /*
-        // 객체 내부에 현재 널값인 변수의 이름을 반환하게 할지
-        if(review.getContent().isEmpty()){
-            // 맵 상수를 이용할 것인지 아니면 음수 값을 세팅하여 보낼지
-        }*/
+        String[] chkNull = review.chkNull(); // controller로 이동
+        if(chkNull.length > 0){
+            return null;
+        }
         return simpleReviewRepository.write(review);
     }
     
