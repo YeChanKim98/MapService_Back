@@ -24,7 +24,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	compileOnly 'org.projectlombok:lombok'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
-	runtimeOnly 'mysql:mysql-connector-java:5.1.41' // 자신의 MySQL버전에 맞는 버전으로 선택, 버전 안 적으면 최신버전
+	runtimeOnly 'mysql:mysql-connector-java' // 자신의 MySQL버전에 맞는 버전으로 선택, 버전 안 적으면 최신버전
 	// MySQL 버전 확인 : select version();
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'

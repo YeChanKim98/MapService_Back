@@ -1,6 +1,6 @@
 package com.service.searchplay.repository.user;
 
-import com.service.searchplay.user.jpatest;
+import com.service.searchplay.model.user.jpatest;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
