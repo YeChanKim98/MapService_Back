@@ -24,7 +24,7 @@ public class SimpleReview {
     private int review_id; // Autoincrement, Primary Key
 
     @NotNull
-    private Long place_id;
+    private Integer place_id;
 
     @NotNull
     private String user_id;
