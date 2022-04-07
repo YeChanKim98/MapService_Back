@@ -8,7 +8,7 @@ public interface SimpleReviewRepository {
     SimpleReview write(SimpleReview review); // 실행 결과 반환
 
     // place_id는 현재 오버레이에서, user_id는 현재 세션에서 받아옴
-    int delete(int place_id,String user_id); // 실행 결과 반환
+    int delete(int place_id, int review_id, String user_id); // 실행 결과 반환
 
     // 특정 장소에 달린 리뷰를 한번에 받아옴
     List<SimpleReview> findByPlaceId(int place_id);

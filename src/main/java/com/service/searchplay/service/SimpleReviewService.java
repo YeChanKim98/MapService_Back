@@ -17,24 +17,22 @@ public class SimpleReviewService {
     public SimpleReviewService(SimpleReviewRepository simpleReviewRepository) {this.simpleReviewRepository = simpleReviewRepository;}
 
 
-    public SimpleReview write(SimpleReview review){
-        String[] chkNull = review.chkNull(); // controller로 이동
-        if(chkNull.length > 0){
-            return null;
-        }
+    public SimpleReview write(SimpleReview review) {
         return simpleReviewRepository.write(review);
     }
     
-    public int delete(int place_id,String user_id){
-        return simpleReviewRepository.delete(place_id,user_id);
+    public boolean delete(int place_id, int review_id, String user_id){
+        if(simpleReviewRepository.delete(place_id, review_id, user_id) > 0) return true;
+        else return false;
     }
 
     public List<SimpleReview> findByPlaceId(int place_id){
         return simpleReviewRepository.findByPlaceId(place_id);
     }
 
-    public int update(SimpleReview review){
-        return simpleReviewRepository.update(review);
+    public boolean update(SimpleReview review){
+        if(simpleReviewRepository.update(review)>0) return true;
+        else return false;
     }
 
     public List<SimpleReview> findByUserId(String user_id){

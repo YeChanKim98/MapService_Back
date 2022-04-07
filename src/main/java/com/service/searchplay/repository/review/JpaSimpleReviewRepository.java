@@ -22,9 +22,10 @@ public class JpaSimpleReviewRepository implements SimpleReviewRepository{
 
     // 리뷰 삭제
     @Override
-    public int delete(int place_id, String user_id) {
-        return em.createQuery("delete from SimpleReview sr where sr.place_id=:place_id and sr.user_id=:user_id")
+    public int delete(int place_id, int review_id, String user_id) {
+        return em.createQuery("delete from SimpleReview sr where sr.place_id=:place_id and sr.review_id=:review_id and sr.user_id=:user_id ")
                 .setParameter("place_id",place_id)
+                .setParameter("review_id",review_id)
                 .setParameter("user_id",user_id)
                 .executeUpdate();
     }

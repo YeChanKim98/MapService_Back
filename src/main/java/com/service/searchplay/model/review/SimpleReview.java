@@ -40,6 +40,8 @@ public class SimpleReview {
     private Timestamp review_date;
 
 
+    // 프론트에서 널 값 검증
+    /*
     public String[] chkNull(){
         String[] haveNull = new String[4];
         int index = 0;
@@ -58,4 +60,5 @@ public class SimpleReview {
         }
         return haveNull;
     }
+    */
 }
