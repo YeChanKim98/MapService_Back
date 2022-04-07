@@ -4,13 +4,12 @@ import com.service.searchplay.model.review.SimpleReview;
 import com.service.searchplay.service.SimpleReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
-@Controller
+@RestController
 public class ReviewController {
 
     private final SimpleReviewService simpleReviewService;
@@ -21,15 +20,16 @@ public class ReviewController {
     }
 
     // 작성
+    @CrossOrigin(origins = { "https://localhost:3000" }, allowedHeaders = "*", allowCredentials = "true")
     @PostMapping("/review/simple/write")
-    public String write(SimpleReview review){
+    public SimpleReview write(SimpleReview review){
         System.out.println("리뷰 작성 요청 : "+review);
         try{ simpleReviewService.write(review); }
         catch(Exception e) {
             System.out.println("[SimpleReviewController] Write Fail : "+e.getCause());
-            return "redirect:/"; // 작성 실패
+            return null; // 작성 실패
         }
-        return "redirect:/"; // 작성 성공
+        return review; // 작성 성공
     }
 
     // 삭제 : 현재 접속한 id와 리뷰넘버가 같으면 삭제 실행
@@ -52,14 +52,18 @@ public class ReviewController {
     }
 
     // 장소ID로 검색
-    @RequestMapping("findByPlaceId")
-    public String findByPlaceId(){
-        return "";
+    @RequestMapping("/review/simple/findByPlaceId/{place_id}")
+    public String findByPlaceId(@PathVariable int place_id){
+        List<SimpleReview> res = simpleReviewService.findByPlaceId(place_id);
+        // return res;
+        return "redirect:/";
     }
 
     // 유저ID로 검색
-    @RequestMapping("findByUserId")
-    public String findByUserId(){
-        return "";
+    @RequestMapping("review/simple/findByUserId/{user_id}")
+    public String findByUserId(@PathVariable String user_id){
+        List<SimpleReview> res = simpleReviewService.findByUserId(user_id);
+        // return res;
+        return "redirect:/";
     }
 }

@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.Generated;
+import org.hibernate.annotations.GenerationTime;
 import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -35,8 +37,7 @@ public class SimpleReview {
     @NotNull
     private String content;
 
-    // Default current_timestamp
-    @Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+    @Generated(GenerationTime.INSERT) // Default current_timestamp
     private Timestamp review_date;
 
 

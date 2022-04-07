@@ -19,7 +19,7 @@ public class HomeController {
         session.setAttribute("place_id",123456);
         System.out.println("User ID : "+session.getAttribute("id"));
         System.out.println("Place ID : "+session.getAttribute("place_id"));
-        return "home";
-//        return "redirect:http://localhost:3000";
+//        return "home";
+        return "redirect:http://localhost:3000";
     }
 }
