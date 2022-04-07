@@ -22,22 +22,23 @@ public class ReviewController {
 
     // 작성
     @PostMapping("/review/simple/write")
-    public boolean write(SimpleReview review){
+    public String write(SimpleReview review){
         System.out.println("리뷰 작성 요청 : "+review);
         try{ simpleReviewService.write(review); }
         catch(Exception e) {
             System.out.println("[SimpleReviewController] Write Fail : "+e.getCause());
-            return false; // 작성 실패
+            return "redirect:/"; // 작성 실패
         }
-        return true; // 작성 성공
+        return "redirect:/"; // 작성 성공
     }
 
     // 삭제 : 현재 접속한 id와 리뷰넘버가 같으면 삭제 실행
     @PostMapping("/review/simple/delete/{place_id}/{review_id}")
-    public boolean delete(@PathVariable int place_id, @PathVariable int review_id, HttpServletRequest request) {
+    public String delete(@PathVariable int place_id, @PathVariable int review_id, HttpServletRequest request) {
         String user_id = request.getParameter("id");
-        boolean res = simpleReviewService.delete(place_id, review_id, user_id);
-        return res;
+        simpleReviewService.delete(place_id, review_id, user_id);
+//        return res; // 성공 실패 여부
+        return "redirect:/"; // 테스트용
     }
     
     // 수정
@@ -51,13 +52,13 @@ public class ReviewController {
     }
 
     // 장소ID로 검색
-    @RequestMapping("")
+    @RequestMapping("findByPlaceId")
     public String findByPlaceId(){
         return "";
     }
 
     // 유저ID로 검색
-    @RequestMapping("")
+    @RequestMapping("findByUserId")
     public String findByUserId(){
         return "";
     }

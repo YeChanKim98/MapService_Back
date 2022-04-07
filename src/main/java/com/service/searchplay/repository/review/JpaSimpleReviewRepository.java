@@ -17,6 +17,7 @@ public class JpaSimpleReviewRepository implements SimpleReviewRepository{
     @Override
     public SimpleReview write(SimpleReview review) {
         em.persist(review);
+        System.out.println("JPA Repository에서 리뷰 작성 완료");
         return review;
     }
 

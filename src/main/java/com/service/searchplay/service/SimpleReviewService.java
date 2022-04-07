@@ -18,7 +18,11 @@ public class SimpleReviewService {
 
 
     public SimpleReview write(SimpleReview review) {
-        return simpleReviewRepository.write(review);
+        // 이미 작성했으면 불가능
+        System.out.println("서비스에서 작성을 시도중..");
+        SimpleReview rs = simpleReviewRepository.write(review);
+        System.out.println("서비스에서 작성을 완료함");
+        return rs;
     }
     
     public boolean delete(int place_id, int review_id, String user_id){

@@ -54,7 +54,7 @@ public class ReviewTest {
 
         sr.setRecmnd("Bad");
         sr.setContent("Sheeeeeet");
-        int resUpdate = simpleReviewService.update(sr); // U : 리뷰 정정
+        boolean resUpdate = simpleReviewService.update(sr); // U : 리뷰 정정
         System.out.println("\n리뷰 정정 결과 : "+resUpdate);
 
 //        int resDelete = simpleReviewService.delete(sr.getPlace_id(), sr.getUser_id()); // D : 리뷰 삭제
