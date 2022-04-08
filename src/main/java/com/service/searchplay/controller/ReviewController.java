@@ -1,12 +1,10 @@
 package com.service.searchplay.controller;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.service.searchplay.model.review.SimpleReview;
 import com.service.searchplay.service.SimpleReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
@@ -22,9 +20,7 @@ public class ReviewController {
     }
 
     // 작성
-    @CrossOrigin(origins = { "http://localhost:3000" }, allowedHeaders = "*", allowCredentials = "true")
-    @ResponseBody
-    @JsonProperty("review")
+    @CrossOrigin(origins = { "http://localhost:3000" }, allowedHeaders = "*", allowCredentials = "true") // 결과값을 넘기기 위함
     @PostMapping("/review/simple/write")
     public SimpleReview write(@RequestBody SimpleReview review){
         System.out.println("리뷰 작성 요청 : "+review.getContent()+" / "+review.getRecmnd()+" / "+review.getUser_id()+" / "+review.getPlace_id());
