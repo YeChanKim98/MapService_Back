@@ -1,5 +1,6 @@
 package com.service.searchplay.controller;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.service.searchplay.model.review.SimpleReview;
 import com.service.searchplay.service.SimpleReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @RestController
+@Controller
 public class ReviewController {
 
     private final SimpleReviewService simpleReviewService;
@@ -20,10 +22,12 @@ public class ReviewController {
     }
 
     // 작성
-    @CrossOrigin(origins = { "https://localhost:3000" }, allowedHeaders = "*", allowCredentials = "true")
+    @CrossOrigin(origins = { "http://localhost:3000" }, allowedHeaders = "*", allowCredentials = "true")
+    @ResponseBody
+    @JsonProperty("review")
     @PostMapping("/review/simple/write")
-    public SimpleReview write(SimpleReview review){
-        System.out.println("리뷰 작성 요청 : "+review);
+    public SimpleReview write(@RequestBody SimpleReview review){
+        System.out.println("리뷰 작성 요청 : "+review.getContent()+" / "+review.getRecmnd()+" / "+review.getUser_id()+" / "+review.getPlace_id());
         try{ simpleReviewService.write(review); }
         catch(Exception e) {
             System.out.println("[SimpleReviewController] Write Fail : "+e.getCause());

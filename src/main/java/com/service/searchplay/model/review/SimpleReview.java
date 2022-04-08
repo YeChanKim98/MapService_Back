@@ -1,10 +1,7 @@
 package com.service.searchplay.model.review;
 
 import com.sun.istack.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.Generated;
 import org.hibernate.annotations.GenerationTime;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,8 +12,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Transactional
-@Getter
-@Setter
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class SimpleReview {
