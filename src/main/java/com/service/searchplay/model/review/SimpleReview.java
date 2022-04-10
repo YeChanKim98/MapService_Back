@@ -11,11 +11,10 @@ import java.time.LocalDateTime;
 
 
 @Entity
-@Transactional
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class SimpleReview {
+public class SimpleReview{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

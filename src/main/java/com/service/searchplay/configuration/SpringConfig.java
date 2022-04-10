@@ -1,4 +1,4 @@
-package com.service.searchplay;
+package com.service.searchplay.configuration;
 
 import com.service.searchplay.repository.review.JpaSimpleReviewRepository;
 import com.service.searchplay.repository.review.SimpleReviewRepository;
