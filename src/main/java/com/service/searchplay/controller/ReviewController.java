@@ -6,13 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @RestController // 다른 서버랑 정보를 Json형태로 주고 받기위한 어노테이션
-
 @Controller
-
 @CrossOrigin(origins = {"http://localhost:3000"} , allowedHeaders = "*", allowCredentials = "true") // 결과값을 넘기기 위함
 // CORS : 다른 호스트와 정보를 서로 주고받기위한 정책
 
@@ -29,38 +26,17 @@ public class ReviewController {
     // 작성
     @PostMapping("/simple/write")
     public SimpleReview write(@RequestBody SimpleReview review){
-        System.out.println("리뷰 작성 요청 : "+review.getContent()+" / "+review.getRecmnd()+" / "+review.getUser_id()+" / "+review.getPlace_id());
-        try{ simpleReviewService.write(review); }
-        catch(Exception e) {
+        System.out.println("\n[Controller] 리뷰 작성 요청 : [ "+review.getContent()+" / "+review.getRecmnd()+" / "+review.getUser_id()+" / "+review.getPlace_id()+" ]");
+        SimpleReview res;
+        try{
+            res = simpleReviewService.write(review);
+        }catch(Exception e) {
             System.out.println("[SimpleReviewController] Write Fail : "+e.getCause());
             return null; // 작성 실패
         }
-        return review; // 작성 성공
+        System.out.println("[Controller] 작성 성공 객체 반환");
+        return res; // 작성 성공
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -100,5 +76,5 @@ public class ReviewController {
 
     // 1. 장소 ID로 모든 리뷰 불러오기
     // 2. 작성 및 작성 후 바로 갱신(리뷰 불러오기기)
-    // 3. CSS 작성 -> Bluma
+    // 3. CSS 작성 -> Bulma
 }

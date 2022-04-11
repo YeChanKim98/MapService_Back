@@ -25,7 +25,7 @@ public class ReviewTest {
 
     @Test
     @DisplayName("Basic CRUD")
-    @Commit
+    @Commit // DB를 사용하는 테스트 메서드 위에 -> 테스트 메서드는 기본적으로 DB가 반영이 안됨
     public void simpleReviewCRUD(){
         System.out.println("한줄리뷰 삽입, 읽기, 수정, 삭제 테스트");
         SimpleReview sr = new SimpleReview();

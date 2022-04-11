@@ -2,18 +2,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>test INDEX</title>
+    <title>예약 테스트</title>
 </head>
 <body>
-    <form  action="/review/simple/write"  method="post">
-        <br><input hidden type="text" name="place_id" th:value="${session.place_id}">
-        <br><input hidden type="text" name="user_id" th:value="${session.   id}">
-        <input type="radio" id="good" name="recmnd" value="Good">
-        <label for="good">Good</label>
-        <input type="radio" id="bad" name="recmnd" value="Bad">
-        <label for="bad">Bad</label>
-        <br><input type="text" name="content" placeholder="내용">
-        <br><button type="submit">작성</button>
+    <form action="예약 컨트롤러 주소"  method="post">
+        <input type="text" name="rsrv_pla" vlaue="123456"><br>
+        <input type="text" name="req_user" value="Reserve Tester"><br>
+        <input type="text" name="req_tel" value="010-1234-5678"><br>
+        <input type="text" name="rsrv_cnt" value="3"><br>
+        <input type="text" name="req_time" value="2022-04-10 12:00"><br>
+        <button type="submit">예약</button>
     </form>
 </body>
 </html>

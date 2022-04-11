@@ -11,11 +11,11 @@ import org.springframework.context.annotation.Configuration;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-@Configuration
+@Configuration // 설정파일에는 해당 어노테이션이 있어야한다
 public class SpringConfig {
 
     @PersistenceContext
-    private EntityManager em;
+    private EntityManager em; // JAP를 다루는 객체인데, 자동으로 만들어짐
 
     @Autowired
     public SpringConfig(EntityManager em){this.em = em;}

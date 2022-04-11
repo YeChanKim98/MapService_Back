@@ -12,16 +12,17 @@ import java.util.List;
 public class SimpleReviewService {
 
     private final SimpleReviewRepository simpleReviewRepository;
+    // 단순한 빈을 담기위한 객체 껍데기
 
     @Autowired
+    // 빈으로 생성된 레포지토리 객체를 받기위한 생성자 -> 껍데기에 레포지토리 빈이 오토와이어드로 인해 들어감
     public SimpleReviewService(SimpleReviewRepository simpleReviewRepository) {this.simpleReviewRepository = simpleReviewRepository;}
 
 
     public SimpleReview write(SimpleReview review) {
         // 이미 작성했으면 불가능
-        System.out.println("서비스에서 작성을 시도중..");
+        System.out.println("[Service] 작성 시도..");
         SimpleReview rs = simpleReviewRepository.write(review);
-        System.out.println("서비스에서 작성을 완료함");
         return rs;
     }
     

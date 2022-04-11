@@ -1,6 +1,8 @@
 package com.service.searchplay.repository.review;
 
 import com.service.searchplay.model.review.SimpleReview;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
@@ -17,7 +19,7 @@ public class JpaSimpleReviewRepository implements SimpleReviewRepository{
     @Override
     public SimpleReview write(SimpleReview review) {
         em.persist(review);
-        System.out.println("JPA Repository에서 리뷰 작성 완료");
+        System.out.println("[Repository] 작성 완료");
         return review;
     }
 

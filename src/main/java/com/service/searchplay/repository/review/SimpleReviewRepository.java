@@ -1,6 +1,6 @@
 package com.service.searchplay.repository.review;
-import com.service.searchplay.model.review.SimpleReview;
 
+import com.service.searchplay.model.review.SimpleReview;
 import java.util.List;
 
 // 리뷰작성, 삭제, 장소 오버레이 기본 출력 리뷰, 리뷰 수정, 내 리뷰 찾기
@@ -20,8 +20,5 @@ public interface SimpleReviewRepository {
     List<SimpleReview> findByUserId(String user_id);
 
     void rearrangement();
-
-
-
 
 }
