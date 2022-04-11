@@ -1,4 +1,4 @@
-package com.service.searchplay.user;
+package com.service.searchplay.model.user;
 
 import lombok.Getter;
 import lombok.Setter;

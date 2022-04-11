@@ -33,10 +33,10 @@ public class Reserve {
     private String rsrv_pms; // wait 기본, submit 수락, refuse 거절, visite (예약후)방문
 
     // 시간 자동 생성
-    @PrePersist
-    public void createDate(){
-        this.date = LocalDateTime.now();
-    }
+//    @PrePersist
+//    public void createDate(){
+//        this.date = LocalDateTime.now();
+//    }
 
 
 
