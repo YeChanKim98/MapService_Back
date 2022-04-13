@@ -9,8 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @RestController // 다른 서버랑 정보를 Json형태로 주고 받기위한 어노테이션
-@Controller
-@CrossOrigin(origins = {"http://localhost:3000"} , allowedHeaders = "*", allowCredentials = "true") // 결과값을 넘기기 위함
+@CrossOrigin(origins = {"http://localhost:3000","http://localhost:2221","http://127.0.0.1:3000","http://127.0.0.1:2221","http://172.16.1.120:3000","http://172.16.1.120:2221",} , allowedHeaders = "*", allowCredentials = "true") // 결과값을 넘기기 위함
 // CORS : 다른 호스트와 정보를 서로 주고받기위한 정책
 
 @RequestMapping(value = "/review", method = {RequestMethod.GET, RequestMethod.POST})
