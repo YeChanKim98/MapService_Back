@@ -21,29 +21,29 @@ public class ReviewService {
     public ReviewService(ReviewRepository reviewRepository) {this.reviewRepository = reviewRepository;}
 
 
-    public Review write(SimpleReview review) {
+    public Review write(Review review) {
         // 이미 작성했으면 불가능
         System.out.println("[Service] 작성 시도..");
-        SimpleReview rs = ReviewRepository.write(review);
+        Review rs = reviewRepository.write(review);
         return rs;
     }
     
     public boolean delete(int place_id, int review_id, String user_id){
-        if(simpleReviewRepository.delete(place_id, review_id, user_id) > 0) return true;
+        if(reviewRepository.delete(place_id, review_id, user_id) > 0) return true;
         else return false;
     }
 
-    public List<SimpleReview> findByPlaceId(int place_id){
-        return simpleReviewRepository.findByPlaceId(place_id);
+    public List<Review> findByPlaceId(int place_id){
+        return reviewRepository.findByPlaceId(place_id);
     }
 
-    public boolean update(SimpleReview review){
-        if(simpleReviewRepository.update(review)>0) return true;
+    public boolean update(Review review){
+        if(reviewRepository.update(review)>0) return true;
         else return false;
     }
 
-    public List<SimpleReview> findByUserId(String user_id){
-        return simpleReviewRepository.findByUserId(user_id);
+    public List<Review> findByUserId(String user_id){
+        return reviewRepository.findByUserId(user_id);
     }
 
 }
