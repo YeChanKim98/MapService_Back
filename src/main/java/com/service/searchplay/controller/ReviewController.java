@@ -24,7 +24,7 @@ public class ReviewController {
 
     // 작성
     @PostMapping("/simple/write")
-    public SimpleReview write(@RequestBody SimpleReview review){
+    public SimpleReview simpleWrite(@RequestBody SimpleReview review){
         System.out.println("\n[Controller] 리뷰 작성 요청 : [ "+review.getContent()+" / "+review.getRecmnd()+" / "+review.getUser_id()+" / "+review.getPlace_id()+" ]");
         SimpleReview res;
         try{
@@ -42,8 +42,7 @@ public class ReviewController {
 
     // 삭제 : 현재 접속한 id와 리뷰넘버가 같으면 삭제 실행
     @PostMapping("/simple/delete/{place_id}/{review_id}")
-    public String delete(@PathVariable int place_id, @PathVariable int review_id, HttpServletRequest request) {
-        String user_id = request.getParameter("id");
+    public String simpleDelete(@PathVariable int place_id, @PathVariable int review_id, @RequestBody String user_id){ // 세션 아이디 획득
         simpleReviewService.delete(place_id, review_id, user_id);
 //        return res; // 성공 실패 여부
         return "redirect:/"; // 테스트용
@@ -51,24 +50,24 @@ public class ReviewController {
     
     // 수정
     @PostMapping("/simple/update/{place_id}/{review_id}")
-    public boolean update(@PathVariable int place_id, @PathVariable int review_id, SimpleReview review, HttpServletRequest request){
+    public boolean simpleUpdate(@PathVariable int place_id, @PathVariable int review_id, SimpleReview review, @RequestBody String user_id){
         review.setPlace_id(place_id);
         review.setReview_id(review_id);
-        review.setUser_id(request.getParameter("id"));
+        review.setUser_id(user_id);
         boolean res = simpleReviewService.update(review);
         return res;
     }
 
     // 장소ID로 검색
     @PostMapping("/simple/findByPlaceId/{place_id}")
-    public List<SimpleReview> findByPlaceId(@PathVariable int place_id){
+    public List<SimpleReview> simpleFindByPlaceId(@PathVariable int place_id){
         List<SimpleReview> placeReviews = simpleReviewService.findByPlaceId(place_id);
         return placeReviews;
     }
 
     // 유저ID로 검색
     @PostMapping( "/simple/findByUserId/{user_id}")
-    public List<SimpleReview> findByUserId(@PathVariable String user_id){
+    public List<SimpleReview> simpleFindByUserId(@PathVariable String user_id){
         List<SimpleReview> userReviews = simpleReviewService.findByUserId(user_id);
         return userReviews;
     }

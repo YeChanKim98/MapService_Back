@@ -33,7 +33,14 @@ create table users(
     age varchar not null
 );
 
-
+create table review(
+    review_id int primary key auto_increment,
+    user_id varchar(25) not null,
+    place_id varchar(25) not null,
+    score float(1,1) not null,
+    content varchar(255) not null,
+    review_date timestamp default current_timestamp
+);
 
 create table
 -- 심플리뷰 테스트 데이터

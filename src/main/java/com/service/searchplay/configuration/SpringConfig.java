@@ -1,6 +1,8 @@
 package com.service.searchplay.configuration;
 
+import com.service.searchplay.repository.review.JpaReviewRepository;
 import com.service.searchplay.repository.review.JpaSimpleReviewRepository;
+import com.service.searchplay.repository.review.ReviewRepository;
 import com.service.searchplay.repository.review.SimpleReviewRepository;
 import com.service.searchplay.repository.user.JpatestRepository;
 import com.service.searchplay.repository.user.testRepository;
@@ -31,5 +33,9 @@ public class SpringConfig {
     public SimpleReviewRepository simpleReviewRepository(){
         return new JpaSimpleReviewRepository(em);
     }
+
+    // 상세리뷰 빈
+    @Bean
+    public ReviewRepository reviewRepository() {return new JpaReviewRepository(em);}
 
 }
