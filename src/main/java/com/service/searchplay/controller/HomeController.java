@@ -24,14 +24,17 @@ public class HomeController {
     public String home(HttpServletRequest request){
         // 테스트용 유저id, 장소id 추가
         HttpSession session = request.getSession();
-        session.setAttribute("id","Tester");
-        session.setAttribute("place_id",123456);
-        System.out.println("User ID : "+session.getAttribute("id"));
-        System.out.println("Place ID : "+session.getAttribute("place_id"));
+        session.setAttribute("req_user","허남훈");
+        session.setAttribute("rsrv_pla",123);
+        session.setAttribute("req_tel", "010-3586-0542");
+        session.setAttribute("rsrv_pms", "wait");
+        System.out.println("User ID : "+session.getAttribute("req_user"));
+        System.out.println("Place ID : "+session.getAttribute("rsrv_pla"));
+        System.out.println("Tel ID : "+session.getAttribute("req_tel"));
 //        return "home";
 
         // JWT 테스트
 
-        return "redirect:http://localhost:3000";
+        return "reserve.html";
     }
 }

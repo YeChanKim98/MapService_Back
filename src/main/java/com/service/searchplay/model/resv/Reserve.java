@@ -10,13 +10,12 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.Generated;
 import org.hibernate.annotations.GenerationTime;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Entity
 @Getter
@@ -44,9 +43,13 @@ public class Reserve {
     private String rsrv_pms;
 
     @NotNull
-    private LocalDateTime rsrv_time;
+    private String rsrv_time;
 
     @Generated(GenerationTime.INSERT)
     private Timestamp req_time;
 
+    @PrePersist
+    public void onPrePersist() {
+        this.rsrv_time = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+    }
 }
