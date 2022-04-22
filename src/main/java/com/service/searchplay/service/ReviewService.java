@@ -1,9 +1,7 @@
 package com.service.searchplay.service;
 
 import com.service.searchplay.model.review.Review;
-import com.service.searchplay.model.review.SimpleReview;
 import com.service.searchplay.repository.review.ReviewRepository;
-import com.service.searchplay.repository.review.SimpleReviewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,11 +19,9 @@ public class ReviewService {
     public ReviewService(ReviewRepository reviewRepository) {this.reviewRepository = reviewRepository;}
 
 
-    public Review write(Review review) {
-        // 이미 작성했으면 불가능
-        System.out.println("[Service] 작성 시도..");
-        Review rs = reviewRepository.write(review);
-        return rs;
+    public boolean write(Review review) {
+        System.out.println("[Service] 상세 작성 시도");
+        return reviewRepository.write(review);
     }
     
     public boolean delete(int place_id, int review_id, String user_id){

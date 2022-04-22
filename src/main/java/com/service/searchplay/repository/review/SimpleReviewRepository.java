@@ -5,7 +5,7 @@ import java.util.List;
 
 // 리뷰작성, 삭제, 장소 오버레이 기본 출력 리뷰, 리뷰 수정, 내 리뷰 찾기
 public interface SimpleReviewRepository {
-    SimpleReview write(SimpleReview review); // 실행 결과 반환
+    Boolean write(SimpleReview review); // 실행 결과 반환
 
     // place_id는 현재 오버레이에서, user_id는 현재 세션에서 받아옴
     int delete(int place_id, int review_id, String user_id); // 실행 결과 반환

@@ -19,11 +19,9 @@ public class SimpleReviewService {
     public SimpleReviewService(SimpleReviewRepository simpleReviewRepository) {this.simpleReviewRepository = simpleReviewRepository;}
 
 
-    public SimpleReview write(SimpleReview review) {
-        // 이미 작성했으면 불가능
+    public boolean write(SimpleReview review) {
         System.out.println("[Service] 작성 시도..");
-        SimpleReview rs = simpleReviewRepository.write(review);
-        return rs;
+        return simpleReviewRepository.write(review);
     }
     
     public boolean delete(int place_id, int review_id, String user_id){

@@ -1,7 +1,6 @@
 package com.service.searchplay.repository.review;
 
 import com.service.searchplay.model.review.Review;
-import com.service.searchplay.model.review.SimpleReview;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -17,7 +16,7 @@ public class JpaReviewRepository implements ReviewRepository{
 
     // 리뷰 작성
     @Override
-    public Review write(Review review) {
+    public boolean write(Review review) {
         em.persist(review);
         System.out.println("[Repository] 작성 완료");
         return review;

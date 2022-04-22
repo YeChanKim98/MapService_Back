@@ -17,10 +17,15 @@ public class JpaSimpleReviewRepository implements SimpleReviewRepository{
 
     // 리뷰 작성
     @Override
-    public SimpleReview write(SimpleReview review) {
-        em.persist(review);
-        System.out.println("[Repository] 작성 완료");
-        return review;
+    public Boolean write(SimpleReview review) {
+        try {
+            em.persist(review);
+            System.out.println("[Repository] 작성 완료");
+            return true;
+        }catch(Exception e){
+            System.out.println("[Repository] 작성 실패 : "+e);
+            return false;
+        }
     }
 
     // 리뷰 삭제
