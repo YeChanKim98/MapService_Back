@@ -30,7 +30,7 @@ public class Review {
     private String user_id;
 
     @NotNull
-    private float score;
+    private int rate;
 
     @NotNull
     private String content;

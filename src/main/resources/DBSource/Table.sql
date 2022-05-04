@@ -37,7 +37,7 @@ create table review(
     review_id int primary key auto_increment,
     user_id varchar(25) not null,
     place_id varchar(25) not null,
-    score float(1,1) not null,
+    score int not null,
     content varchar(255) not null,
     review_date timestamp default current_timestamp
 );

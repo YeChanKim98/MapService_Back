@@ -8,13 +8,11 @@ import com.service.searchplay.service.SimpleReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
 import java.util.List;
 
 @RestController // 다른 서버랑 정보를 Json형태로 주고 받기위한 어노테이션
-@CrossOrigin(origins = {"http://localhost:3000","http://localhost:2221","http://localhost:8080",
-        "http://127.0.0.1:3000","http://127.0.0.1:2221","http://127.0.0.1:8080"
-        ,"http://172.16.1.120:3000","http://172.16.1.120:2221","http://172.16.1.120:8080",
-        "http://1.209.148.228:8080","http://1.209.148.228:8080","http://1.209.148.228:8080"} , allowedHeaders = "*", allowCredentials = "true") // 결과값을 넘기기 위함
+@CrossOrigin(origins = {"http://localhost:3000","http://localhost:8080"} , allowedHeaders = "*", allowCredentials = "true") // 결과값을 넘기기 위함
 // CORS : 다른 호스트와 정보를 서로 주고받기위한 정책
 
 @RequestMapping(value = "api/review", method = {RequestMethod.GET, RequestMethod.POST})
@@ -78,7 +76,7 @@ public class ReviewController {
     @PostMapping( "/simple/findByUserId/{user_id}")
     public List<SimpleReview> simpleFindByUserId(@PathVariable String user_id, HttpSession session){
         List<SimpleReview> userReviews = null;
-        System.out.println("[Controller] 유저의 한줄 리뷰 목록 요청");
+        System.out.println("[Controller] 유저"+user_id+"의 한줄 리뷰 목록 요청");
         if(certified(user_id,session)){ userReviews = simpleReviewService.findByUserId(user_id); }
         else{ System.out.println(" -> [Controller] 본인 확인 실패"); }
         return userReviews; //
@@ -102,20 +100,21 @@ public class ReviewController {
 
     // 삭제 : 현재 접속한 id와 리뷰넘버가 같으면 삭제 실행
     @PostMapping("/delete/{place_id}/{review_id}")
-    public String delete(@PathVariable int place_id, @PathVariable int review_id, @RequestBody String user_id, HttpSession session){ // 세션 아이디 획득
-        if(certified(user_id,session)){
-            if(reviewService.delete(place_id, review_id, user_id)){return "DELETE_SUCCESS";}
+    public String delete(@PathVariable int place_id, @PathVariable int review_id, @RequestBody HashMap<String, String> user_id, HttpSession session){ // 세션 아이디 획득
+        System.out.println("[Controller] 리뷰 삭제 요청 :"+place_id+" / "+review_id+" / "+user_id.get("user_id"));
+        if(certified(user_id.get("user_id"),session)){
+            if(reviewService.delete(place_id, review_id, user_id.get("user_id"))){return "DELETE_SUCCESS";}
             else{return "DELETE_FAIL";}
         }else{return "CERTIFIED_FAIL";}
     }
     
     // 수정
     @PostMapping("/update/{place_id}/{review_id}")
-    public String update(@PathVariable int place_id, @PathVariable int review_id, Review review, @RequestBody String user_id, HttpSession session){
-        if(!certified(user_id,session)){ return "CERTIFIED_FAIL"; }
+    public String update(@PathVariable int place_id, @PathVariable int review_id, Review review, @RequestBody HashMap<String, String> user_id, HttpSession session){
+        if(!certified(user_id.get("user_id"),session)){ return "CERTIFIED_FAIL"; }
         review.setPlace_id(place_id);
         review.setReview_id(review_id);
-        review.setUser_id(user_id);
+        review.setUser_id(user_id.get("user_id"));
         if(reviewService.update(review)){ return "UPDATE_SUCCESS"; }
         else{return "UPDATE_FAIL";}
     }
@@ -131,7 +130,7 @@ public class ReviewController {
     @PostMapping( "/findByUserId/{user_id}")
     public List<Review> findByUserId(@PathVariable String user_id, HttpSession session){
         List<Review> userReviews = null;
-        System.out.println("[Controller] 유저의 상세 리뷰 목록 요청");
+        System.out.println("[Controller] 유저"+user_id+"의 상세 리뷰 목록 요청");
         if(certified(user_id,session)){ userReviews = reviewService.findByUserId(user_id); }
         else{ System.out.println(" -> [Controller] 본인 확인 실패"); }
         return userReviews;
@@ -140,8 +139,9 @@ public class ReviewController {
     //////////////////////////////////////////////////////////////////////[공용 메서드]]/////////////////////////////////////////////////////////////////////////
 
     public boolean certified(String user_id, HttpSession session){
-        if(user_id == session.getAttribute("user_id")) return true;
-        else return false;
+        return true; // 부분 테스트 이므로, 세션 주입과정이 생략되어있음/
+//        if(user_id == session.getAttribute("user_id")) return true;
+//        else return false;
     }
 
 }
