@@ -1,7 +1,7 @@
 package com.service.searchplay.controller;
 
-import com.service.searchplay.user.JpatestService;
-import com.service.searchplay.user.jpatest;
+import com.service.searchplay.model.user.JpatestService;
+import com.service.searchplay.model.user.jpatest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

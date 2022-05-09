@@ -1,0 +1,37 @@
+import logo from './logo.svg';
+import './App.css';
+import axios from 'axios';
+
+function App() {
+
+  var user_id = "React";
+  var place_id = 123456;
+  console.log(place_id);
+
+function write(){
+  axios.post('https://localhost:8080/review/simple/write').then((Response)=>{
+    console.log(Response.data);
+  }).catch((Error)=>{
+    console.log(Error);
+  })
+}
+
+
+  return (
+    <div>
+      <form action="https://localhost:8080/review/simple/write" method="post">
+        <br/><input hidden type="text" name="place_id" value={place_id}/>
+        <br/><input hidden type="text" name="user_id" value={user_id}/>
+        <input type="radio" id="good" name="recmnd" value="Good"/>
+        <label for="good">Good</label>
+        <input type="radio" id="bad" name="recmnd" value="Bad"/>
+        <label for="bad">Bad</label>
+        <br/><input type="text" name="content" placeholder="내용"/>
+        <br/><button type="submit" onSubmit={write}>작성</button>
+      </form>
+    </div>
+  );
+}
+
+
+export default App;

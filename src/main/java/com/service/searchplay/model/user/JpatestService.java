@@ -1,4 +1,4 @@
-package com.service.searchplay.user;
+package com.service.searchplay.model.user;
 
 import com.service.searchplay.repository.user.JpatestRepository;
 import org.springframework.beans.factory.annotation.Autowired;
